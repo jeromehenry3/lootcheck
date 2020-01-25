@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { deposit, withdraw } from '../actions/balance';
 
-export class Wallet extends Component {
-    state = {
-        balance: undefined
-    };
+export const Wallet = props => {
+    // state = {
+    //     balance: undefined
+    // };
+    const [balance, setBalance] = useState(undefined)
 
-    handleWalletInput = event => this.setState({ balance: parseInt(event.target.value, 10) });
+    const handleWalletInput = event => setBalance(parseInt(event.target.value, 10));
 
-    deposit = () => this.state.balance !== undefined && this.props.deposit(this.state.balance);
-    withdraw = () => this.state.balance !== undefined && this.props.withdraw(this.state.balance);
+    const deposit = () => balance !== undefined && props.deposit(balance);
+    const withdraw = () => balance !== undefined && props.withdraw(balance);
 
-    render() {
-        return (
-            <div>
-                <h3 className='balance'>Wallet balance: {this.props.balance}</h3>
-                <br />
-                <input className='input-wallet' onChange={this.handleWalletInput} />
-                <button className='btn-deposit' onClick={this.deposit}>Dépôt</button>
-                <button className='btn-withdraw' onClick={this.withdraw}>Retrait</button>
-            </div>
-        );
-    }
+
+    return (
+        <div>
+            <h3 className='balance'>Wallet balance: {props.balance}</h3>
+            <br />
+            <input className='input-wallet' onChange={handleWalletInput} />
+            <button className='btn-deposit' onClick={deposit}>Dépôt</button>
+            <button className='btn-withdraw' onClick={withdraw}>Retrait</button>
+        </div>
+    );
 };
 
 export default connect(state => { return { balance: state.balance } } , { deposit, withdraw })(Wallet);
