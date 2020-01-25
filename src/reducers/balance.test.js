@@ -1,43 +1,52 @@
 import balanceReducer from './balance';
+import balanceReducer2 from './balance';
 import * as constants from '../actions/constants';
 import * as actions from '../actions/balance';
 
 describe('balanceReducer', () => {
-    it('sets a balance', () => {
+    describe('when initializing', () => {
         const balance = 10;
 
-        expect(balanceReducer(undefined, { type: constants.SET_BALANCE, balance })).toEqual(balance);
-    });
+        it('sets a balance', () => {
+            expect(balanceReducer(undefined, { type: constants.SET_BALANCE, balance })).toEqual(balance);
+        });
 
-    it('creates an action to deposit into the balance', () => {
-        const deposit = 10;
+        describe('then re-initializing', () => {
+            it('read the balance from the cookies', () => {
+                expect(balanceReducer2(undefined, {})).toEqual(balance);
+            })
+        })
 
-        const expectedAction = { type: constants.DEPOSIT, deposit };
+        it('creates an action to deposit into the balance', () => {
+            const deposit = 10;
 
-        expect(actions.deposit(deposit)).toEqual(expectedAction);
-    });
+            const expectedAction = { type: constants.DEPOSIT, deposit };
 
-    it('deposits into the balance', () => {
-        const deposit = 10;
-        const initialState = 5;
+            expect(actions.deposit(deposit)).toEqual(expectedAction);
+        });
 
-        expect(balanceReducer(initialState, { type: constants.DEPOSIT, deposit }))
-            .toEqual(initialState + deposit);
-    });
+        it('deposits into the balance', () => {
+            const deposit = 10;
+            const initialState = 5;
 
-    it('creates an action to withdraw from the balance', () => {
-        const withdrawal = 4;
+            expect(balanceReducer(initialState, { type: constants.DEPOSIT, deposit }))
+                .toEqual(initialState + deposit);
+        });
 
-        const expectedAction = { type: constants.WITHDRAW, withdrawal };
+        it('creates an action to withdraw from the balance', () => {
+            const withdrawal = 4;
 
-        expect(actions.withdraw(withdrawal)).toEqual(expectedAction);
-    });
+            const expectedAction = { type: constants.WITHDRAW, withdrawal };
 
-    it('withdraws from the balance', () => {
-        const withdrawal = 4;
-        const initialState = 12;
+            expect(actions.withdraw(withdrawal)).toEqual(expectedAction);
+        });
 
-        expect(balanceReducer(initialState, { type: constants.WITHDRAW, withdrawal }))
-            .toEqual(initialState - withdrawal);
+        it('withdraws from the balance', () => {
+            const withdrawal = 4;
+            const initialState = 12;
+
+            expect(balanceReducer(initialState, { type: constants.WITHDRAW, withdrawal }))
+                .toEqual(initialState - withdrawal);
+        })
     })
 })
