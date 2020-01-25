@@ -3,6 +3,11 @@ import { read_cookie, bake_cookie } from 'sfcookies';
 
 const BALANCE_COOKIE = 'BALANCE_COOKIE';
 
+/**
+ * Reducer for the balance.TO FIX:  The reducer should be a pure function, but is not here (due to cookie).
+ * @param state the state
+ * @param action the action passed to the reducer
+ */
 const balance = (state = 0, action) => {
     let balance;
 
