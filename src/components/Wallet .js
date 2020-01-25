@@ -9,8 +9,8 @@ export class Wallet extends Component {
 
     handleWalletInput = event => this.setState({ balance: parseInt(event.target.value, 10) });
 
-    deposit = () => this.props.deposit(this.state.balance);
-    withdraw = () => this.props.withdraw(this.state.balance);
+    deposit = () => this.state.balance !== undefined && this.props.deposit(this.state.balance);
+    withdraw = () => this.state.balance !== undefined && this.props.withdraw(this.state.balance);
 
     render() {
         return (

@@ -24,7 +24,22 @@ describe('<Wallet />', () => {
         expect(wallet.find('.input-wallet').exists()).toBe(true);
     });
 
-    describe('when the user types int the wallet input', () => {
+    describe('if the user forgets to type into the input', () => {
+        describe('and wants to make a deposit', () => {
+            beforeEach(() => wallet.find('.btn-deposit').simulate('click'));
+            it('does not dispatch the `deposit()` received from the props', () => {
+                expect(mockDeposit).toHaveBeenCalledTimes(0);
+            });
+        });
+        describe('and wants to make a withdrawal', () => {
+            wallet.find('.btn-withdraw').simulate('click');
+            it('does not dispatch the `withdraw()` received from props', () => {
+                expect(mockWithdraw).toHaveBeenCalledTimes(0);
+            })
+        })
+    });
+
+    describe('when the user types into the wallet input', () => {
         const userBalance = '25';
         beforeEach(() => {
             wallet.find('.input-wallet')
@@ -48,4 +63,6 @@ describe('<Wallet />', () => {
             })
         });
     });
+
+
 })
