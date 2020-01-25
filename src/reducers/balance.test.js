@@ -26,18 +26,18 @@ describe('balanceReducer', () => {
     });
 
     it('creates an action to withdraw from the balance', () => {
-        const withdraw = 4;
+        const withdrawal = 4;
 
-        const expectedAction = { type: constants.WITHDRAW, withdraw };
+        const expectedAction = { type: constants.WITHDRAW, withdrawal };
 
-        expect(actions.withdraw(withdraw)).toEqual(expectedAction);
+        expect(actions.withdraw(withdrawal)).toEqual(expectedAction);
     });
 
     it('withdraws from the balance', () => {
-        const withdraw = 4;
+        const withdrawal = 4;
         const initialState = 12;
 
-        expect(balanceReducer(initialState, { type: constants.WITHDRAW, withdraw }))
-            .toEqual(initialState - withdraw);
+        expect(balanceReducer(initialState, { type: constants.WITHDRAW, withdrawal }))
+            .toEqual(initialState - withdrawal);
     })
 })
