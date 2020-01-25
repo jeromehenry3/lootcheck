@@ -9,6 +9,7 @@ const App = () => (
         <Wallet />
         <hr />
         <Loot />
+        <div>rates calculated with <a target='_blank' href='https://www.coindesk.com/price'>Coindesk</a></div>
     </div>
 );
 

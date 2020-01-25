@@ -9,5 +9,11 @@ exports[`<App /> renders correctly 1`] = `
   <Connect(Wallet) />
   <hr />
   <Connect(Loot) />
+  <div>
+    rates calculated with 
+    <a target=\\"_blank\\" href=\\"https://www.coindesk.com/price\\">
+      Coindesk
+    </a>
+  </div>
 </div>"
 `;
