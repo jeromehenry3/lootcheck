@@ -20,10 +20,9 @@ export class Wallet extends Component {
                 <input className='input-wallet' onChange={this.handleWalletInput} />
                 <button className='btn-deposit' onClick={this.deposit}>Dépôt</button>
                 <button className='btn-withdraw' onClick={this.withdraw}>Retrait</button>
-
             </div>
         );
     }
 };
 
-export default connect(state => ({ balance: state }) , { deposit, withdraw })(Wallet);
+export default connect(state => { return { balance: state.balance } } , { deposit, withdraw })(Wallet);
